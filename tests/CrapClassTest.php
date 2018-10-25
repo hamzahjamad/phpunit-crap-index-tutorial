@@ -17,7 +17,18 @@ class CrapClassTest extends TestCase
 
 	}
 
-	public function testListCities(){
-		$this->markTestIncomplete('This test has not been implemented yet');
+	public function statesProvider() {
+		return [
+			["Sabah", "Kota Kinabalu, Sandakan, Tawau"],
+			["Sarawak", "Sibu, Kuching, Miri"]
+		];
+	}
+
+	/**
+	* @dataProvider statesProvider
+	*/
+	public function testListCities($state, $result){
+		$output = $this->crapClass->listCities($state);
+		$this->assertEquals($result, $output);
 	}
 }
