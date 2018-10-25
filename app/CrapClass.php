@@ -3,19 +3,24 @@ namespace App;
 
 class CrapClass 
 {
+
+    private $states;
+
+    public function __construct() {
+	    $this->states = [
+			"Sabah" => ["Kota Kinabalu", "Sandakan", "Tawau"],
+			"Sarawak" => ["Sibu", "Kuching", "Miri"],
+			"Selangor" => ["Sepang", "Sabak Bernam", "Gombak"],
+			"Johor" => ["Batu Pahat", "Muar", "Segamat"],
+			"Terengganu" => ["Dungun", "Marang", "Setiu"],
+		];
+    }
+
 	public function listCities($state) {
-		if ($state == "Sabah") {
-			return "Kota Kinabalu, Sandakan, Tawau";
-		} elseif ($state == "Sarawak") {
-			return "Sibu, Kuching, Miri";
-		} elseif ($state == "Selangor") {
-			return "Sepang, Sabak Bernam, Gombak";
-		} elseif ($state == "Johor") {
-			return "Batu Pahat, Muar, Segamat";
-		} elseif ($state == "Terengganu") {
-			return "Dungun, Marang, Setiu";
-		} else {
-			throw new \UnexpectedValueException("Unknown state $state");
-		}
+		if (!isset($this->states[$state])) {
+		    throw new \UnexpectedValueException("Unknown state $state");
+		} 
+
+		return implode(", ", $this->states[$state]);
 	}	
 }
