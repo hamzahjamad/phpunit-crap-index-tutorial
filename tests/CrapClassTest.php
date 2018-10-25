@@ -20,7 +20,10 @@ class CrapClassTest extends TestCase
 	public function statesProvider() {
 		return [
 			["Sabah", "Kota Kinabalu, Sandakan, Tawau"],
-			["Sarawak", "Sibu, Kuching, Miri"]
+			["Sarawak", "Sibu, Kuching, Miri"],
+			["Selangor", "Sepang, Sabak Bernam, Gombak"],
+		    ["Johor", "Batu Pahat, Muar, Segamat"],
+		    ["Terengganu", "Dungun, Marang, Setiu"]
 		];
 	}
 
@@ -30,5 +33,12 @@ class CrapClassTest extends TestCase
 	public function testListCities($state, $result){
 		$output = $this->crapClass->listCities($state);
 		$this->assertEquals($result, $output);
+	}
+
+	/**
+	* @expectedException UnexpectedValueException
+	*/
+	public function testListCitiesException() {
+		$this->crapClass->listCities('Hiroshima');
 	}
 }
